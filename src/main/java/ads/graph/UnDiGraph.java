@@ -1,4 +1,4 @@
-package ads.lab8.graph;
+package ads.graph;
 
 /**
  * A class for undirected graph

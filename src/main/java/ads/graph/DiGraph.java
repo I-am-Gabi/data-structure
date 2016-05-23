@@ -1,6 +1,4 @@
-package ads.lab8.graph;
-
-import ads.lab8.graph.AbstractGraph;
+package ads.graph;
 
 /**
  * A class for directed graph

@@ -1,7 +1,7 @@
 package ads.lab8;
 
-import ads.lab8.graph.DiGraph;
-import ads.lab8.graph.UnDiGraph;
+import ads.graph.DiGraph;
+import ads.graph.UnDiGraph;
 import junit.framework.TestCase;
 
 /**

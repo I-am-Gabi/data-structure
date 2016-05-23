@@ -1,7 +1,7 @@
 package ads.lab9;
 
 import java.util.*;
-import ads.lab8.graph.DiGraph;
+import ads.graph.DiGraph;
 
 /**
  * A class to compute the topological sorting of an acyclic digraph
@@ -12,31 +12,35 @@ public class TopSort {
 	 * returns a list of the vertices of G so that they
 	 * appear in topological order (from first to last)
 	 */
-	public static Queue<Integer> sort(DiGraph G) {
-		HashMap<Integer, Integer> graph = cloneGrap(G);
-		Queue<Integer> queue = new LinkedList<Integer>();
+	public static List<Integer> sort(DiGraph G) {
+		HashMap<Integer, Integer> graph = cloneGraph(G);
+		List<Integer> sorted = new LinkedList<Integer>();
 
 		while (!graph.isEmpty()) {
-			int v = find_zero(graph, G.nbVertices());
-            queue.add(v);
-            graph.remove(v);
-            for (int adj: G.adjacents(v)) {
-                if (graph.containsKey(adj)) {
-                    graph.put(adj, graph.get(adj) - 1);
+            Queue<Integer> zeros = find_zeros(graph, G.nbVertices());
+            while (!zeros.isEmpty()) {
+                int v = zeros.remove();
+                sorted.add(v);
+                graph.remove(v);
+                for (int adj : G.adjacents(v)) {
+                    if (graph.containsKey(adj)) {
+                        graph.put(adj, graph.get(adj) - 1);
+                    }
                 }
             }
         }
-		return queue;
+		return sorted;
 	}
 
-    private static int find_zero(HashMap<Integer, Integer> graph, int vertices) {
+    private static Queue<Integer> find_zeros(HashMap<Integer, Integer> graph, int vertices) {
+		Queue<Integer> zeros = new LinkedList<Integer>();
         for (int v = 0; v < vertices; v++) {
-            if (graph.containsKey(v) && graph.get(v) <= 0) return v;
+            if (graph.containsKey(v) && graph.get(v) <= 0) zeros.add(v);
         }
-        return -1;
+        return zeros;
     }
 
-	private static HashMap<Integer, Integer> cloneGrap(DiGraph G) {
+	private static HashMap<Integer, Integer> cloneGraph(DiGraph G) {
         HashMap<Integer, Integer>queue = new HashMap<Integer, Integer>();
 		for (int v = 0; v < G.nbVertices(); v++) {
 			int degree = G.inDegree(v);

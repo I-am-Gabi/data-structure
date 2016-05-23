@@ -1,6 +1,6 @@
 package ads.lab8;
 
-import ads.lab8.graph.UnDiGraph;
+import ads.graph.UnDiGraph;
 
 /**
  * A class to compute connected components of an undirected graph

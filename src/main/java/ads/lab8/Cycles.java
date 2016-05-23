@@ -1,11 +1,7 @@
 package ads.lab8;
 
-import ads.lab8.graph.DiGraph;
-import ads.lab8.graph.UnDiGraph;
-import sun.security.provider.certpath.Vertex;
-
-import java.util.Collection;
-import java.util.Iterator;
+import ads.graph.DiGraph;
+import ads.graph.UnDiGraph;
 
 /**
  * A class to find cycle in directed and undirected graphs
