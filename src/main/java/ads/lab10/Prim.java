@@ -12,8 +12,6 @@ import ads.lab6.heap.BinaryHeap;
  */
 public class Prim {
 
-    private static boolean[] market;
-
 	/**
 	 * returns the set all edges of an MST of the graph G
 	 */
@@ -34,24 +32,25 @@ public class Prim {
 		// known[u] == true <==> u is known
 		boolean known[] = new boolean[G.nbVertices()];
 
-        int node = 0;
-        known[node] = true;
-        visit(G, minHeap, node);
+        known[0] = true;
+        visit(G, minHeap, 0, known);
 
         while (!minHeap.isEmpty()) {
             Edge e = minHeap.deleteExtreme();
             if (known[e.destination()]) continue;
 
             known[e.destination()] = true;
-            System.out.println(e.origin() + " " + e.destination() + " " + G.weight(e.origin(), e.destination()));
-            visit(G, minHeap, e.destination());
+            mst.add(e);
+            visit(G, minHeap, e.destination(), known);
         }
         return mst;
 	}
 
-    private static void visit(WeightedUnDiGraph G, BinaryHeap<WeightedEdge> minHeap, int node) throws FullHeapException {
-        for (int adj : G.adjacents(node))
-            minHeap.add(new WeightedEdge(node, adj, G.weight(node, adj)));
+    private static void visit(WeightedUnDiGraph G, BinaryHeap<WeightedEdge> minHeap, int node, boolean known[]) throws FullHeapException {
+        for (Edge adj : G.incidents(node)) {
+            if (known[adj.destination()]) continue;
+            minHeap.add(new WeightedEdge(adj, G.weight(node, adj.destination())));
+        }
     }
 
     /**

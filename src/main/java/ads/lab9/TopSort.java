@@ -9,14 +9,14 @@ import ads.graph.DiGraph;
 public class TopSort {
 
 	/**
-	 * returns a list of the vertices of G so that they
-	 * appear in topological order (from first to last)
-	 */
-	public static List<Integer> sort(DiGraph G) {
-		HashMap<Integer, Integer> graph = cloneGraph(G);
-		List<Integer> sorted = new LinkedList<Integer>();
+     * returns a list of the vertices of G so that they
+     * appear in topological order (from first to last)
+     */
+    public static List<Integer> sort(DiGraph G) {
+        HashMap<Integer, Integer> graph = cloneGraph(G);
+        List<Integer> sorted = new LinkedList<Integer>();
 
-		while (!graph.isEmpty()) {
+        while (!graph.isEmpty()) {
             Queue<Integer> zeros = find_zeros(graph, G.nbVertices());
             while (!zeros.isEmpty()) {
                 int v = zeros.remove();
@@ -29,11 +29,11 @@ public class TopSort {
                 }
             }
         }
-		return sorted;
-	}
+        return sorted;
+    }
 
     private static Queue<Integer> find_zeros(HashMap<Integer, Integer> graph, int vertices) {
-		Queue<Integer> zeros = new LinkedList<Integer>();
+        Queue<Integer> zeros = new LinkedList<Integer>();
         for (int v = 0; v < vertices; v++) {
             if (graph.containsKey(v) && graph.get(v) <= 0) zeros.add(v);
         }

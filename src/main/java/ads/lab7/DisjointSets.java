@@ -22,7 +22,6 @@ public class DisjointSets {
 		this.numSets = n;
 		for (int i = 0; i < numSets; i++)
 			faze[i] = -1;
-
 	}
 	
 	/**
@@ -37,7 +36,7 @@ public class DisjointSets {
             }
             index++;
 		}
-		return num_sets-1;
+		return num_sets;
 	}
 	
 	/**

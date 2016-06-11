@@ -24,7 +24,7 @@ public class ConnectedComponents {
 	 * fill in the array 'component' with label 'label' for all vertices
 	 * of graph 'G' which are in the same connected component than 'u'
 	 */
-	private static int[] setComponent(UnDiGraph G, int u, int label, int component[] ) {
+	private static int[] setComponent(UnDiGraph G, int u, int label, int component[]) {
 		if (component[u] != 0)
 			return null;
 
